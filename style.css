@@ -1,0 +1,38 @@
+html, body {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+img {
+	height: 250px;
+	width: 250px;
+	position: absolute;
+	left: 200px;
+	top: 180px;
+}
+
+#phone {
+	height: 700px;
+	width: 700px;
+	left: 0;
+	top: 0;
+}
+#coorX {
+	position: absolute;	
+	right: 100px;
+}
+
+#coorY {
+	position: absolute;	
+	right: 150px;
+	top: 30px;
+}
+
+#number {
+	position: absolute;
+	top: 520px;
+	left: 200px;
+	border-width: 3px;
+	border-style: double;
+	height: 20px;
+	font-size: 120%;
+}

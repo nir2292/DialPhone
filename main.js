@@ -53,6 +53,9 @@ var moflag;
 var angle;
 var startAngle;
 
+var clickSnd = new Audio("click.mp3");
+var degreeCount = 0;
+
 var rotateDial = function(event) {
 	oldAngle = Number(dial.style.transform.substring(7,dial.style.transform.length - 4));
 	angle = Math.atan2(event.clientY - dialCenterY, event.clientX - dialCenterX) * 180 / Math.PI;
@@ -60,7 +63,7 @@ var rotateDial = function(event) {
 	if (angle < 0) { angle += 360; }
 	if (oldAngle < 0) { oldAngle += 360; }
 	coorY.setAttribute('value',event.clientY + ',' + dialCenterY + ',' + event.clientX + ',' + dialCenterX + ',' + angle2);
-	coorX.setAttribute('value',String(angle) + "," + String(startAngle));
+	coorX.setAttribute('value',String(angle) + "," + String(oldAngle));
 	//coorY.setAttribute('value',event.clientY + ',' + dialCenterY + ',' + event.clientX + ',' + dialCenterX);
 	//coorX.setAttribute('value',String(angle) + "," + String(startAngle));
 	//coorY.setAttribute('value',oldAngle);
@@ -69,6 +72,10 @@ var rotateDial = function(event) {
 		angle > startAngle
 		) {
 		dial.style.transform = "rotate(" + (angle - startAngle)+ "deg)";
+		if (Math.floor(oldAngle / 28) > degreeCount) {
+			degreeCount++;
+			clickSnd.play();
+		}
 	}
 }
 
@@ -80,8 +87,12 @@ function delay(time) {
   }
 }
 
+var backClickSnd = new Audio("backclick.mp3");
+
 var resetDial = function() {
 	var currAngle = Number(dial.style.transform.substring(7,dial.style.transform.length - 4));
+	backClickSnd.play();
+	degreeCount = 0;
 	if (currAngle===0) {
 		dial.style.transform = "rotate(0deg)";
 		return;
@@ -162,20 +173,24 @@ pin.addEventListener("mousedown", function(event){
 });
 pin.addEventListener("mouseup", function(event){
 	event.preventDefault();
+	if (mdflag) {
+		resetDial();
+	}
 	mdflag=false;
 	if ((calculateDist(event.clientX, coorX_End, event.clientY, coorY_End) < 32) && moflag) {
 		//coorY.setAttribute('value',currentButton);
 		var numberInput = document.getElementById('number');
 		numberInput.value = String(numberInput.value) + String(currentButton);
 	}
-	resetDial();
 });
 
 pin.addEventListener("mouseout", function(event){
 	event.preventDefault();
 	moflag=false;
+	if (mdflag) {
+		resetDial();
+	}
 	mdflag=false;
-	resetDial();
 });
 
 

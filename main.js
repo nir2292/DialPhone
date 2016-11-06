@@ -185,9 +185,9 @@ pin.addEventListener('touchmove', function(event){
 	event.preventDefault();
 	//coorX.setAttribute('value',event.clientX);
 	//coorY.setAttribute('value',event.clientY);
-	if (mdflag) {
+	//if (mdflag) {
     	rotateDial(event);
-	}
+	//}
 });
 
 pin.addEventListener('touchstart', function(event){

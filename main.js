@@ -52,6 +52,7 @@ var angle;
 var startAngle;
 
 var rotateDial = function(event) {
+	alert("ROTATING");
 	oldAngle = Number(dial.style.transform.substring(7,dial.style.transform.length - 4));
 	angle = Math.atan2(event.clientY - dialCenterY, event.clientX - dialCenterX) * 180 / Math.PI;
 	var angle2 = angle;

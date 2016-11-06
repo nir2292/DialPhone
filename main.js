@@ -3,7 +3,7 @@ var dial = document.getElementById('dial');
 var pin = document.getElementById('pin');
 var textAr = document.getElementById('textAr');
 
-document.getElementById('number').value = 'v3';
+document.getElementById('number').value = 'v4';
 
 var dialCenterX = (dial.getBoundingClientRect().left) + (dial.getBoundingClientRect().right - dial.getBoundingClientRect().left)/2;
 var dialCenterY = (dial.getBoundingClientRect().top) + (dial.getBoundingClientRect().bottom - dial.getBoundingClientRect().top)/2;
@@ -187,46 +187,46 @@ pin.addEventListener('touchmove', function(event){
 	event.preventDefault();
 	//coorX.setAttribute('value',event.clientX);
 	//coorY.setAttribute('value',event.clientY);
-	//if (mdflag) {
+	if (mdflag) {
     	rotateDial(event.targetTouches[0]);
-	//}
+	}
 });
 
 pin.addEventListener('touchstart', function(event){
 	event.preventDefault();
-	event = event.targetTouches[0];
+	event2 = event.targetTouches[0];
 	mdflag=true;
 	moflag=true;
-	startAngle = Math.atan2(event.clientY - dialCenterY, event.clientX - dialCenterX) * 180 / Math.PI;
+	startAngle = Math.atan2(event2.clientY - dialCenterY, event2.clientX - dialCenterX) * 180 / Math.PI;
 	if (startAngle < 0) { startAngle += 360; }
-	if (calculateDist(event.clientX, coorX_1, event.clientY, coorY_1) < 22) {
+	if (calculateDist(event2.clientX, coorX_1, event2.clientY, coorY_1) < 22) {
 		currentButton = 1;
 	}
-	else if (calculateDist(event.clientX, coorX_2, event.clientY, coorY_2) < 22) {
+	else if (calculateDist(event2.clientX, coorX_2, event2.clientY, coorY_2) < 22) {
 		currentButton = 2;
 	}
-	else if (calculateDist(event.clientX, coorX_3, event.clientY, coorY_3) < 22) {
+	else if (calculateDist(event2.clientX, coorX_3, event2.clientY, coorY_3) < 22) {
 		currentButton = 3;
 	}
-	else if (calculateDist(event.clientX, coorX_4, event.clientY, coorY_4) < 22) {
+	else if (calculateDist(event2.clientX, coorX_4, event2.clientY, coorY_4) < 22) {
 		currentButton = 4;
 	}
-	else if (calculateDist(event.clientX, coorX_5, event.clientY, coorY_5) < 22) {
+	else if (calculateDist(event2.clientX, coorX_5, event2.clientY, coorY_5) < 22) {
 		currentButton = 5;
 	}
-	else if (calculateDist(event.clientX, coorX_6, event.clientY, coorY_6) < 22) {
+	else if (calculateDist(event2.clientX, coorX_6, event2.clientY, coorY_6) < 22) {
 		currentButton = 6;
 	}
-	else if (calculateDist(event.clientX, coorX_7, event.clientY, coorY_7) < 22) {
+	else if (calculateDist(event2.clientX, coorX_7, event2.clientY, coorY_7) < 22) {
 		currentButton = 7;
 	}
-	else if (calculateDist(event.clientX, coorX_8, event.clientY, coorY_8) < 22) {
+	else if (calculateDist(event2.clientX, coorX_8, event2.clientY, coorY_8) < 22) {
 		currentButton = 8;
 	}
-	else if (calculateDist(event.clientX, coorX_9, event.clientY, coorY_9) < 22) {
+	else if (calculateDist(event2.clientX, coorX_9, event2.clientY, coorY_9) < 22) {
 		currentButton = 9;
 	}
-	else if (calculateDist(event.clientX, coorX_0, event.clientY, coorY_0) < 22) {
+	else if (calculateDist(event2.clientX, coorX_0, event2.clientY, coorY_0) < 22) {
 		currentButton = 0;
 	}
 	else {
@@ -238,9 +238,9 @@ pin.addEventListener('touchstart', function(event){
 
 pin.addEventListener('touchend', function(event){
 	event.preventDefault();
-	event = event.targetTouches[0];
+	event2 = event.targetTouches[0];
 	mdflag=false;
-	if ((calculateDist(event.clientX, coorX_End, event.clientY, coorY_End) < 32) && moflag) {
+	if ((calculateDist(event2.clientX, coorX_End, event2.clientY, coorY_End) < 32) && moflag) {
 		//coorY.setAttribute('value',currentButton);
 		var numberInput = document.getElementById('number');
 		numberInput.value = String(numberInput.value) + String(currentButton);

@@ -3,7 +3,7 @@ var dial = document.getElementById('dial');
 var pin = document.getElementById('pin');
 var textAr = document.getElementById('textAr');
 
-textAr.setAttribute('value','v1');
+document.getElementById('number').value = 'v1';
 
 var dialCenterX = (dial.getBoundingClientRect().left) + (dial.getBoundingClientRect().right - dial.getBoundingClientRect().left)/2;
 var dialCenterY = (dial.getBoundingClientRect().top) + (dial.getBoundingClientRect().bottom - dial.getBoundingClientRect().top)/2;
@@ -54,7 +54,6 @@ var angle;
 var startAngle;
 
 var rotateDial = function(event) {
-	alert("ROTATING");
 	oldAngle = Number(dial.style.transform.substring(7,dial.style.transform.length - 4));
 	angle = Math.atan2(event.clientY - dialCenterY, event.clientX - dialCenterX) * 180 / Math.PI;
 	var angle2 = angle;
@@ -189,14 +188,12 @@ pin.addEventListener('touchmove', function(event){
 	//coorX.setAttribute('value',event.clientX);
 	//coorY.setAttribute('value',event.clientY);
 	//if (mdflag) {
-	alert("move");
     	rotateDial(event);
 	//}
 });
 
 pin.addEventListener('touchstart', function(event){
 	event.preventDefault();
-	alert("start");
 	mdflag=true;
 	moflag=true;
 	startAngle = Math.atan2(event.clientY - dialCenterY, event.clientX - dialCenterX) * 180 / Math.PI;

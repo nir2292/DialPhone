@@ -3,7 +3,7 @@ var dial = document.getElementById('dial');
 var pin = document.getElementById('pin');
 var textAr = document.getElementById('textAr');
 
-document.getElementById('number').value = 'v4';
+document.getElementById('number').value = 'v5';
 
 var dialCenterX = (dial.getBoundingClientRect().left) + (dial.getBoundingClientRect().right - dial.getBoundingClientRect().left)/2;
 var dialCenterY = (dial.getBoundingClientRect().top) + (dial.getBoundingClientRect().bottom - dial.getBoundingClientRect().top)/2;
@@ -65,9 +65,8 @@ var rotateDial = function(event) {
 	//coorX.setAttribute('value',String(angle) + "," + String(startAngle));
 	//coorY.setAttribute('value',oldAngle);
 	if (
-		//(((angle - startAngle) > 0) && ((angle - startAngle) > oldAngle)) ||
-		//(((angle - startAngle) < 0) && ((angle - startAngle + 360) > oldAngle))
-		((angle - startAngle) > oldAngle)
+		//((angle - startAngle) > oldAngle)
+		angle > startAngle
 		) {
 		dial.style.transform = "rotate(" + (angle - startAngle)+ "deg)";
 	}
@@ -182,7 +181,41 @@ pin.addEventListener("mouseout", function(event){
 
 //--------------------------
 
+function touchHandler(event)
+{
+    var touches = event.changedTouches,
+        first = touches[0],
+        type = "";
+    switch(event.type)
+    {
+        case "touchstart": type = "mousedown"; break;
+        case "touchmove":  type = "mousemove"; break;        
+        case "touchend":   type = "mouseup";   break;
+        default:           return;
+    }
 
+    // initMouseEvent(type, canBubble, cancelable, view, clickCount, 
+    //                screenX, screenY, clientX, clientY, ctrlKey, 
+    //                altKey, shiftKey, metaKey, button, relatedTarget);
+
+    var simulatedEvent = document.createEvent("MouseEvent");
+    simulatedEvent.initMouseEvent(type, true, true, window, 1, 
+                                  first.screenX, first.screenY, 
+                                  first.clientX, first.clientY, false, 
+                                  false, false, false, 0/*left*/, null);
+
+    first.target.dispatchEvent(simulatedEvent);
+    event.preventDefault();
+}
+
+
+document.addEventListener("touchstart", touchHandler, true);
+document.addEventListener("touchmove", touchHandler, true);
+document.addEventListener("touchend", touchHandler, true);
+document.addEventListener("touchcancel", touchHandler, true);    
+
+
+/**
 pin.addEventListener('touchmove', function(event){
 	event.preventDefault();
 	//coorX.setAttribute('value',event.clientX);
@@ -254,3 +287,4 @@ pin.addEventListener('touchcancel', function(event){
 	mdflag=false;
 	resetDial();
 });
+*/

@@ -210,10 +210,10 @@ function touchHandler(event)
 }
 
 
-document.addEventListener("touchstart", touchHandler, true);
-document.addEventListener("touchmove", touchHandler, true);
-document.addEventListener("touchend", touchHandler, true);
-document.addEventListener("touchcancel", touchHandler, true);    
+pin.addEventListener("touchstart", touchHandler, true);
+pin.addEventListener("touchmove", touchHandler, true);
+pin.addEventListener("touchend", touchHandler, true);
+pin.addEventListener("touchcancel", touchHandler, true);    
 
 
 /**

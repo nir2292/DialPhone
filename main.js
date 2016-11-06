@@ -178,3 +178,74 @@ pin.addEventListener("mouseout", function(event){
 });
 
 
+//--------------------------
+
+
+pin.addEventListener("touchmove", function(event){
+	event.preventDefault();
+	//coorX.setAttribute('value',event.clientX);
+	//coorY.setAttribute('value',event.clientY);
+	if (mdflag) {
+    	rotateDial(event);
+	}
+});
+
+pin.addEventListener("touchstart", function(event){
+	event.preventDefault();
+	mdflag=true;
+	moflag=true;
+	startAngle = Math.atan2(event.clientY - dialCenterY, event.clientX - dialCenterX) * 180 / Math.PI;
+	if (startAngle < 0) { startAngle += 360; }
+	if (calculateDist(event.clientX, coorX_1, event.clientY, coorY_1) < 22) {
+		currentButton = 1;
+	}
+	else if (calculateDist(event.clientX, coorX_2, event.clientY, coorY_2) < 22) {
+		currentButton = 2;
+	}
+	else if (calculateDist(event.clientX, coorX_3, event.clientY, coorY_3) < 22) {
+		currentButton = 3;
+	}
+	else if (calculateDist(event.clientX, coorX_4, event.clientY, coorY_4) < 22) {
+		currentButton = 4;
+	}
+	else if (calculateDist(event.clientX, coorX_5, event.clientY, coorY_5) < 22) {
+		currentButton = 5;
+	}
+	else if (calculateDist(event.clientX, coorX_6, event.clientY, coorY_6) < 22) {
+		currentButton = 6;
+	}
+	else if (calculateDist(event.clientX, coorX_7, event.clientY, coorY_7) < 22) {
+		currentButton = 7;
+	}
+	else if (calculateDist(event.clientX, coorX_8, event.clientY, coorY_8) < 22) {
+		currentButton = 8;
+	}
+	else if (calculateDist(event.clientX, coorX_9, event.clientY, coorY_9) < 22) {
+		currentButton = 9;
+	}
+	else if (calculateDist(event.clientX, coorX_0, event.clientY, coorY_0) < 22) {
+		currentButton = 0;
+	}
+	else {
+		currentButton = 'E';
+	}
+	//coorX.setAttribute('value',currentButton);
+	rotateDial();
+});
+pin.addEventListener("touchend", function(event){
+	event.preventDefault();
+	mdflag=false;
+	if ((calculateDist(event.clientX, coorX_End, event.clientY, coorY_End) < 32) && moflag) {
+		//coorY.setAttribute('value',currentButton);
+		var numberInput = document.getElementById('number');
+		numberInput.value = String(numberInput.value) + String(currentButton);
+	}
+	resetDial();
+});
+
+pin.addEventListener("touchcancel", function(event){
+	event.preventDefault();
+	moflag=false;
+	mdflag=false;
+	resetDial();
+});

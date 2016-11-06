@@ -183,7 +183,6 @@ pin.addEventListener("mouseout", function(event){
 
 pin.addEventListener('touchmove', function(event){
 	event.preventDefault();
-	alert("touchmove");
 	//coorX.setAttribute('value',event.clientX);
 	//coorY.setAttribute('value',event.clientY);
 	if (mdflag) {
@@ -236,7 +235,6 @@ pin.addEventListener('touchstart', function(event){
 
 pin.addEventListener('touchend', function(event){
 	event.preventDefault();
-	alert("touchend");
 	mdflag=false;
 	if ((calculateDist(event.clientX, coorX_End, event.clientY, coorY_End) < 32) && moflag) {
 		//coorY.setAttribute('value',currentButton);

@@ -3,7 +3,7 @@ var dial = document.getElementById('dial');
 var pin = document.getElementById('pin');
 var textAr = document.getElementById('textAr');
 
-document.getElementById('number').value = 'v2';
+document.getElementById('number').value = 'v3';
 
 var dialCenterX = (dial.getBoundingClientRect().left) + (dial.getBoundingClientRect().right - dial.getBoundingClientRect().left)/2;
 var dialCenterY = (dial.getBoundingClientRect().top) + (dial.getBoundingClientRect().bottom - dial.getBoundingClientRect().top)/2;
@@ -185,16 +185,16 @@ pin.addEventListener("mouseout", function(event){
 
 pin.addEventListener('touchmove', function(event){
 	event.preventDefault();
-	alert("touchmove");
 	//coorX.setAttribute('value',event.clientX);
 	//coorY.setAttribute('value',event.clientY);
 	//if (mdflag) {
-    	rotateDial(event);
+    	rotateDial(event.targetTouches[0]);
 	//}
 });
 
 pin.addEventListener('touchstart', function(event){
 	event.preventDefault();
+	event = event.targetTouches[0];
 	mdflag=true;
 	moflag=true;
 	startAngle = Math.atan2(event.clientY - dialCenterY, event.clientX - dialCenterX) * 180 / Math.PI;
@@ -238,6 +238,7 @@ pin.addEventListener('touchstart', function(event){
 
 pin.addEventListener('touchend', function(event){
 	event.preventDefault();
+	event = event.targetTouches[0];
 	mdflag=false;
 	if ((calculateDist(event.clientX, coorX_End, event.clientY, coorY_End) < 32) && moflag) {
 		//coorY.setAttribute('value',currentButton);

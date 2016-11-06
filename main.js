@@ -3,7 +3,7 @@ var dial = document.getElementById('dial');
 var pin = document.getElementById('pin');
 var textAr = document.getElementById('textAr');
 
-document.getElementById('number').value = 'v1';
+document.getElementById('number').value = 'v2';
 
 var dialCenterX = (dial.getBoundingClientRect().left) + (dial.getBoundingClientRect().right - dial.getBoundingClientRect().left)/2;
 var dialCenterY = (dial.getBoundingClientRect().top) + (dial.getBoundingClientRect().bottom - dial.getBoundingClientRect().top)/2;
@@ -185,6 +185,7 @@ pin.addEventListener("mouseout", function(event){
 
 pin.addEventListener('touchmove', function(event){
 	event.preventDefault();
+	alert("touchmove");
 	//coorX.setAttribute('value',event.clientX);
 	//coorY.setAttribute('value',event.clientY);
 	//if (mdflag) {

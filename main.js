@@ -181,7 +181,7 @@ pin.addEventListener("mouseout", function(event){
 //--------------------------
 
 
-pin.addEventListener("touchmove", function(event){
+pin.addEventListener('touchmove', function(event){
 	event.preventDefault();
 	alert("touchmove");
 	//coorX.setAttribute('value',event.clientX);
@@ -191,7 +191,7 @@ pin.addEventListener("touchmove", function(event){
 	}
 });
 
-pin.addEventListener("touchstart", function(event){
+pin.addEventListener('touchstart', function(event){
 	event.preventDefault();
 	alert("touchstart");
 	mdflag=true;
@@ -234,7 +234,7 @@ pin.addEventListener("touchstart", function(event){
 	//coorX.setAttribute('value',currentButton);
 	rotateDial();
 });
-pin.addEventListener("touchend", function(event){
+pin.addEventListener('touchend', function(event){
 	event.preventDefault();
 	alert("touchend");
 	mdflag=false;
@@ -246,7 +246,7 @@ pin.addEventListener("touchend", function(event){
 	resetDial();
 });
 
-pin.addEventListener("touchcancel", function(event){
+pin.addEventListener('touchcancel', function(event){
 	event.preventDefault();
 	alert("touchcancel");
 	moflag=false;

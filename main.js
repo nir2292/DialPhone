@@ -183,6 +183,7 @@ pin.addEventListener("mouseout", function(event){
 
 pin.addEventListener("touchmove", function(event){
 	event.preventDefault();
+	alert("touchmove");
 	//coorX.setAttribute('value',event.clientX);
 	//coorY.setAttribute('value',event.clientY);
 	if (mdflag) {
@@ -192,6 +193,7 @@ pin.addEventListener("touchmove", function(event){
 
 pin.addEventListener("touchstart", function(event){
 	event.preventDefault();
+	alert("touchstart");
 	mdflag=true;
 	moflag=true;
 	startAngle = Math.atan2(event.clientY - dialCenterY, event.clientX - dialCenterX) * 180 / Math.PI;
@@ -234,6 +236,7 @@ pin.addEventListener("touchstart", function(event){
 });
 pin.addEventListener("touchend", function(event){
 	event.preventDefault();
+	alert("touchend");
 	mdflag=false;
 	if ((calculateDist(event.clientX, coorX_End, event.clientY, coorY_End) < 32) && moflag) {
 		//coorY.setAttribute('value',currentButton);
@@ -245,6 +248,7 @@ pin.addEventListener("touchend", function(event){
 
 pin.addEventListener("touchcancel", function(event){
 	event.preventDefault();
+	alert("touchcancel");
 	moflag=false;
 	mdflag=false;
 	resetDial();

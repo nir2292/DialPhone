@@ -193,7 +193,6 @@ pin.addEventListener('touchmove', function(event){
 
 pin.addEventListener('touchstart', function(event){
 	event.preventDefault();
-	alert("touchstart");
 	mdflag=true;
 	moflag=true;
 	startAngle = Math.atan2(event.clientY - dialCenterY, event.clientX - dialCenterX) * 180 / Math.PI;
@@ -234,6 +233,7 @@ pin.addEventListener('touchstart', function(event){
 	//coorX.setAttribute('value',currentButton);
 	rotateDial();
 });
+
 pin.addEventListener('touchend', function(event){
 	event.preventDefault();
 	alert("touchend");

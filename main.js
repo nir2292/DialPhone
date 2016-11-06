@@ -248,7 +248,6 @@ pin.addEventListener('touchend', function(event){
 
 pin.addEventListener('touchcancel', function(event){
 	event.preventDefault();
-	alert("touchcancel");
 	moflag=false;
 	mdflag=false;
 	resetDial();
